@@ -3,4 +3,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( 'elementor_design_md_router_version' );
+delete_option( 'design_system_for_elementor_router_version' );

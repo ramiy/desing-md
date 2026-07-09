@@ -1,5 +1,5 @@
 <?php
-namespace DesignMd;
+namespace DesignSystemForElementor;
 
 use Elementor\Core\Kits\Documents\Kit;
 
@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Module {
 
-	const QUERY_VAR = 'elementor_design_md';
-	const ROUTER_OPTION_KEY = 'elementor_design_md_router_version';
+	const QUERY_VAR = 'design_system_for_elementor';
+	const ROUTER_OPTION_KEY = 'design_system_for_elementor_router_version';
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_rewrite_rule' ] );
 		add_filter( 'query_vars', [ $this, 'add_query_var' ] );
-		add_action( 'template_redirect', [ $this, 'maybe_serve_design_md' ], 0 );
+		add_action( 'template_redirect', [ $this, 'maybe_serve_design_system_for_elementor' ], 0 );
 	}
 
 	public function register_rewrite_rule(): void {
@@ -30,17 +30,17 @@ class Module {
 		return $vars;
 	}
 
-	public function maybe_serve_design_md(): void {
-		if ( ! $this->is_design_md_request() ) {
+	public function maybe_serve_design_system_for_elementor(): void {
+		if ( ! $this->is_design_system_for_elementor_request() ) {
 			return;
 		}
 
 		$kit = \Elementor\Plugin::$instance->kits_manager->get_active_kit_for_frontend();
 
-		$renderer = new Design_Md_Renderer();
+		$renderer = new Design_System_For_Elementor_Renderer();
 		$output = $renderer->render( $kit );
 
-		$output = apply_filters( 'design_md_for_elementor', $output, $kit );
+		$output = apply_filters( 'design_system_for_elementor', $output, $kit );
 
 		nocache_headers();
 		status_header( 200 );
@@ -50,7 +50,7 @@ class Module {
 		exit;
 	}
 
-	private function is_design_md_request(): bool {
+	private function is_design_system_for_elementor_request(): bool {
 		if ( get_query_var( self::QUERY_VAR ) ) {
 			return true;
 		}
@@ -63,9 +63,9 @@ class Module {
 	}
 
 	private function maybe_flush_rewrite_rules(): void {
-		if ( get_option( self::ROUTER_OPTION_KEY ) !== DESIGN_MD_VERSION ) {
+		if ( get_option( self::ROUTER_OPTION_KEY ) !== DESIGN_SYSTEM_FOR_ELEMENTOR_VERSION ) {
 			flush_rewrite_rules();
-			update_option( self::ROUTER_OPTION_KEY, DESIGN_MD_VERSION );
+			update_option( self::ROUTER_OPTION_KEY, DESIGN_SYSTEM_FOR_ELEMENTOR_VERSION );
 		}
 	}
 }

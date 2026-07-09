@@ -1,5 +1,5 @@
 <?php
-namespace DesignMd\Render;
+namespace DesignSystemForElementor\Render;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

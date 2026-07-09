@@ -1,5 +1,5 @@
 <?php
-namespace DesignMd\TokenBuilder;
+namespace DesignSystemForElementor\TokenBuilder;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

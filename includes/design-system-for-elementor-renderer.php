@@ -1,16 +1,16 @@
 <?php
-namespace DesignMd;
+namespace DesignSystemForElementor;
 
 use Elementor\Core\Kits\Documents\Kit;
-use DesignMd\Render\Markdown_Emitter;
-use DesignMd\Render\Yaml_Emitter;
-use DesignMd\TokenBuilder\Token_Builder;
+use DesignSystemForElementor\Render\Markdown_Emitter;
+use DesignSystemForElementor\Render\Yaml_Emitter;
+use DesignSystemForElementor\TokenBuilder\Token_Builder;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Design_Md_Renderer {
+class Design_System_For_Elementor_Renderer {
 
 	public function render( Kit $kit ): string {
 		$settings = $kit->get_settings();

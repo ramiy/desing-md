@@ -1,6 +1,6 @@
-=== Design.md ===
+=== Design System for Elementor ===
 Contributors: ramiy
-Tags: elementor, design.md, design system, ai, design tokens
+Tags: elementor, design system, design.md, design tokens, ai
 Stable tag: 1.0.0
 Requires at least: 6.0
 Tested up to: 7.0
@@ -19,7 +19,7 @@ Modern web design has changed. Advanced users no longer redesign pages by hand �
 
 But those AI tools don't know **your** brand. For instance, ask Stitch to "redesign my pricing page" and you'll get a beautiful, generic, off-brand page that ignores your colors, your typography, your buttons, your spacing — everything that makes your website look like _your site_.
 
-Design.md for Elementor fixes that. It converts your Elementor **Site Settings** (Global Colors, Global Fonts, spacing, border radius, buttons, headings, and more) into the [design.md schema](https://github.com/google-labs-code/design.md) — the emerging standard for expressing a design system to AI agents — and serves it at `https://yoursite.com/design.md` as a portable, machine-readable representation of your Design System.
+This plugin fixes that. It converts your Elementor **Site Settings** (Global Colors, Global Fonts, spacing, border radius, buttons, headings, and more) into the [design.md schema](https://github.com/google-labs-code/design.md) — the emerging standard for expressing a design system to AI agents — and serves it at `https://yoursite.com/design.md` as a portable, machine-readable representation of your Design System.
 
 Point Stitch (or any other AI tool) at your `design.md` URL, and the AI now designs **with** your brand instead of ignoring it. Same design system, same tokens, same components — every generated page fits your existing website.
 
@@ -30,7 +30,7 @@ The result: brand consistency across every external tool you use. Colors, fonts,
 **Why Design.md?**
 
 * **AI redesigns stay on-brand** — colors, typography, spacing, button styles all flow through automatically.
-* **One source of truth** — your Elementor Kit already defines your design system. Design.md just exposes it in a format AI understands.
+* **One source of truth** — your Elementor Kit already defines your design system. The plugin just exposes it in a format AI understands.
 * **Zero manual sync** — every change to Site Settings is reflected instantly. No exporting, no copy-paste, no drift.
 * **Portable** — the `/design.md` URL works with any AI tool, editor, or agent that accepts a link or file.
 * **Full-site or per-page ready** — expose the whole website's design system today; per-page tokens on the roadmap.
@@ -107,9 +107,9 @@ Any AI tool that accepts a URL, file upload, or pasted text — including [Googl
 
 **Customizing the output:**
 
-You can modify the Elementor "Site Settings" or modify the generated output using the `design_md_for_elementor` filter hook:
+You can modify the Elementor "Site Settings" or modify the generated output using the `design_system_for_elementor` filter hook:
 
-    add_filter( 'design_md_for_elementor', function( $output, $kit ) {
+    add_filter( 'design_system_for_elementor', function( $output, $kit ) {
         // Modify $output string here.
         return $output;
     }, 10, 2 );
@@ -143,15 +143,6 @@ In short: the richer your Elementor Site Settings, the more useful your `design.
 
 The `/design.md` endpoint is publicly accessible and unauthenticated. It exposes the same design system your website already ships in its CSS stylesheet. No user data, passwords, or private content are exposed.
 
-== Installation ==
-
-1. Make sure [Elementor](https://wordpress.org/plugins/elementor/) is installed and active.
-2. Upload the `design-md` folder to `/wp-content/plugins/`.
-3. Activate the plugin through the **Plugins** screen in WordPress.
-4. Visit `https://yoursite.com/design.md` to verify the endpoint is working.
-
-If the URL returns a 404, go to **Settings → Permalinks** and click **Save Changes** to flush rewrite rules.
-
 == Frequently Asked Questions ==
 
 = How do I use this with Google Stitch? =
@@ -160,7 +151,7 @@ Copy your `https://yoursite.com/design.md` URL and reference it in your Stitch p
 
 = Will this change how my website looks? =
 
-No. Design.md for Elementor is read-only. It only exposes what your Elementor Kit already contains — it never modifies your website, your Kit, or any page. Uninstalling the plugin leaves your website exactly as it was.
+No. The plugin creates a read-only endpoint for `/design.md` file. It only exposes what your Elementor Kit already contains — it never modifies your website, your Kit, or any page. Uninstalling the plugin leaves your website exactly as it was.
 
 = Can I use this to import an AI-generated design back into Elementor? =
 
@@ -184,7 +175,7 @@ Yes. The plugin uses `home_url()` for path detection, so it is subdirectory-awar
 
 = Can I customize the output? =
 
-Yes, use the `design_md_for_elementor` filter hook to modify the output. It was designed for external plugins that extend the Elementor Site Settings, and want to expose the new data to external agents.
+Yes, use the `design_system_for_elementor` filter hook to modify the output. It was designed for external plugins that extend the Elementor Site Settings, and want to expose the new data to external agents.
 
 = Does this work with Elementor Pro? =
 
